@@ -17,7 +17,7 @@ go run main.go
 export GIN_MODE=release
 go run main.go
 
-# use file database instead of in-memory databse
+# use database file instead of in-memory databse
 export DATABASE_URL="books.db" 
 go run main.go
 ```
@@ -93,6 +93,7 @@ go get -u github.com/gin-gonic/gin
 go get -u gorm.io/gorm
 go get -u gorm.io/driver/sqlite
 
+# Swagger and Redoc UI 
 go get -u github.com/go-openapi/runtime/middleware
 
 # testing / asserts / mocking
