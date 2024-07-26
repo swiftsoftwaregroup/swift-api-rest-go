@@ -28,11 +28,15 @@ Browse the docs and test the API via the Swagger UI:
 open http://localhost:8001/docs
 ```
 
+![swagger-ui](./docs/swagger-ui.png)
+
 Browse the docs using Redoc. This is an alternative to the Swagger UI:
 
 ```bash
 open http://localhost:8001/redoc
 ```
+
+![redoc-ui](./docs/redoc-ui.png)
 
 ## Updating the code
 
