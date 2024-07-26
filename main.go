@@ -72,13 +72,13 @@ func setupRouter() *gin.Engine {
 	r.DELETE("/books/:id", deleteBook)
 
 	// Serve the Swagger JSON
-	r.GET("/swagger.json", func(c *gin.Context) {
+	r.GET("/openapi.json", func(c *gin.Context) {
 		c.File("./swag/swagger.json")
 	})
 
 	// Swagger UI
 	swaggerOpts := middleware.SwaggerUIOpts{
-		SpecURL: "/swagger.json",
+		SpecURL: "/openapi.json",
 		Path:    "/docs",
 	}
 	swaggerHandler := middleware.SwaggerUI(swaggerOpts, nil)
@@ -86,7 +86,7 @@ func setupRouter() *gin.Engine {
 
 	// ReDoc
 	redocOpts := middleware.RedocOpts{
-		SpecURL: "/swagger.json",
+		SpecURL: "/openapi.json",
 		Path:    "/redoc",
 	}
 	redocHandler := middleware.Redoc(redocOpts, nil)
