@@ -59,6 +59,9 @@ Run the tests (from the command line):
 
 ```sh
 ./test.sh
+
+# or
+GIN_MODE=release go test
 ```
 
 ## How to create a new project
