@@ -53,6 +53,14 @@ If you update the API metadata, make sure you run `./swag-init.sh`  to update th
 ./swag-init.sh
 ```
 
+## Development
+
+Run the tests (from the command line):
+
+```sh
+./test.sh
+```
+
 ## How to create a new project
 
 ```bash
@@ -64,17 +72,14 @@ go get -u github.com/gin-gonic/gin
 go get -u gorm.io/gorm
 go get -u gorm.io/driver/sqlite
 
-go get -u github.com/swaggo/swag
-go get -u github.com/swaggo/files
-go get -u github.com/swaggo/gin-swagger
 go get -u github.com/go-openapi/runtime/middleware
 
+# testing / asserts / mocking
+go get github.com/stretchr/testify
+
 # tools
-# Docs
 go install -a golang.org/x/tools/cmd/godoc@latest 
-# OpenAPI / Swagger
 go install -a github.com/swaggo/swag/cmd/swag@latest 
-# watch for go commands
 go install -a github.com/mitranim/gow@latest 
 
 # generate swagger docs
