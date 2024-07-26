@@ -9,7 +9,7 @@ definitions:
         example: https://example.com/go.jpg
         type: string
       created_at:
-        example: "2023-04-23T18:25:43.511Z"
+        example: "2024-01-01T18:25:43.511Z"
         type: string
       date_published:
         example: "2015-10-26"
@@ -24,7 +24,7 @@ definitions:
         example: The Go Programming Language
         type: string
       updated_at:
-        example: "2023-04-23T18:25:43.511Z"
+        example: "2024-01-01T18:25:43.511Z"
         type: string
     type: object
 host: localhost:8001

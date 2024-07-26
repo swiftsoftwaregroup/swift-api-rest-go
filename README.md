@@ -25,7 +25,13 @@ go run main.go
 Browse the docs and test the API via the Swagger UI:
 
 ```bash
-open http://localhost:8001/swagger/index.html
+open http://localhost:8001/docs
+```
+
+Browse the docs using Redoc. This is an alternative to the Swagger UI:
+
+```bash
+open http://localhost:8001/redoc
 ```
 
 ## Updating the code
@@ -61,6 +67,7 @@ go get -u gorm.io/driver/sqlite
 go get -u github.com/swaggo/swag
 go get -u github.com/swaggo/files
 go get -u github.com/swaggo/gin-swagger
+go get -u github.com/go-openapi/runtime/middleware
 
 # tools
 # Docs

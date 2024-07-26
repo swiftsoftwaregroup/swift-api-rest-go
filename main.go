@@ -10,8 +10,7 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/go-openapi/runtime/middleware"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
@@ -25,6 +24,7 @@ var db *gorm.DB
 // @description A simple API for managing books.
 // @host localhost:8001
 // @BasePath /
+
 func main() {
 	initDB()
 	r := setupRouter()
@@ -58,7 +58,7 @@ func setupRouter() *gin.Engine {
 
 	// Add CORS middleware
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:*"} // Allow all localhost origins
+	config.AllowOrigins = []string{"http://localhost:*"}
 	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
 	config.AllowCredentials = true
@@ -71,7 +71,26 @@ func setupRouter() *gin.Engine {
 	r.PUT("/books/:id", updateBook)
 	r.DELETE("/books/:id", deleteBook)
 
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// Serve the Swagger JSON
+	r.GET("/swagger.json", func(c *gin.Context) {
+		c.File("./swag/swagger.json")
+	})
+
+	// Swagger UI
+	swaggerOpts := middleware.SwaggerUIOpts{
+		SpecURL: "/swagger.json",
+		Path:    "/docs",
+	}
+	swaggerHandler := middleware.SwaggerUI(swaggerOpts, nil)
+	r.GET("/docs", gin.WrapH(swaggerHandler))
+
+	// ReDoc
+	redocOpts := middleware.RedocOpts{
+		SpecURL: "/swagger.json",
+		Path:    "/redoc",
+	}
+	redocHandler := middleware.Redoc(redocOpts, nil)
+	r.GET("/redoc", gin.WrapH(redocHandler))
 
 	return r
 }

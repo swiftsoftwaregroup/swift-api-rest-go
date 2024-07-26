@@ -213,7 +213,7 @@ const docTemplate = `{
                 },
                 "created_at": {
                     "type": "string",
-                    "example": "2023-04-23T18:25:43.511Z"
+                    "example": "2024-01-01T18:25:43.511Z"
                 },
                 "date_published": {
                     "type": "string",
@@ -233,7 +233,7 @@ const docTemplate = `{
                 },
                 "updated_at": {
                     "type": "string",
-                    "example": "2023-04-23T18:25:43.511Z"
+                    "example": "2024-01-01T18:25:43.511Z"
                 }
             }
         }
