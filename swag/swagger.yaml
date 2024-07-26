@@ -1,0 +1,158 @@
+basePath: /
+definitions:
+  models.Book:
+    properties:
+      author:
+        example: Alan A. A. Donovan
+        type: string
+      cover_image_url:
+        example: https://example.com/go.jpg
+        type: string
+      created_at:
+        example: "2023-04-23T18:25:43.511Z"
+        type: string
+      date_published:
+        example: "2015-10-26"
+        type: string
+      deleted_at:
+        example: "null"
+        type: string
+      id:
+        example: 1
+        type: integer
+      title:
+        example: The Go Programming Language
+        type: string
+      updated_at:
+        example: "2023-04-23T18:25:43.511Z"
+        type: string
+    type: object
+host: localhost:8001
+info:
+  contact: {}
+  description: A simple API for managing books.
+  title: Book Management API
+  version: "1.0"
+paths:
+  /books:
+    get:
+      description: Get a list of all books
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Book'
+            type: array
+      summary: Get all books
+    post:
+      consumes:
+      - application/json
+      description: Create a new book with the provided details
+      parameters:
+      - description: Book object
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/models.Book'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Book'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a new book
+  /books/{id}:
+    delete:
+      description: Delete a specific book by its ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete a book
+    get:
+      description: Get details of a specific book by its ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get a book by ID
+    put:
+      consumes:
+      - application/json
+      description: Update details of a specific book by its ID
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Updated book object
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/models.Book'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update a book
+swagger: "2.0"

@@ -16,4 +16,9 @@ goenv versions
 eval "$(goenv init -)"
 
 # add go tools
-go install golang.org/x/tools/cmd/godoc@latest
+# Go Docs
+go install golang.org/x/tools/cmd/godoc@latest 
+# OpenAPI / Swagger
+go install github.com/swaggo/swag/cmd/swag@latest 
+# watch for go commands
+go install github.com/mitranim/gow@latest 

@@ -22,6 +22,31 @@ export DATABASE_URL="books.db"
 go run main.go
 ```
 
+Browse the docs and test the API via the Swagger UI:
+
+```bash
+open http://localhost:8001/swagger/index.html
+```
+
+## Updating the code
+
+```bash
+source configure.sh
+```
+
+Open the project directory in Visual Studio Code:
+
+```bash
+code .
+```
+
+If you update the API metadata, make sure you run `./swag-init.sh`  to update the `swag` module:
+
+```bash
+# runs `swag init --output ./swag` 
+./swag-init.sh
+```
+
 ## How to create a new project
 
 ```bash
@@ -32,5 +57,20 @@ go mod init swift-api-rest-go
 go get -u github.com/gin-gonic/gin
 go get -u gorm.io/gorm
 go get -u gorm.io/driver/sqlite
+
+go get -u github.com/swaggo/swag
+go get -u github.com/swaggo/files
+go get -u github.com/swaggo/gin-swagger
+
+# tools
+# Docs
+go install -a golang.org/x/tools/cmd/godoc@latest 
+# OpenAPI / Swagger
+go install -a github.com/swaggo/swag/cmd/swag@latest 
+# watch for go commands
+go install -a github.com/mitranim/gow@latest 
+
+# generate swagger docs
+swag init --output ./swag
 ```
 
