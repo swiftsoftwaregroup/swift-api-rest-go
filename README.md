@@ -64,6 +64,20 @@ Run the tests (from the command line):
 GIN_MODE=release go test
 ```
 
+Generate test coverage report:
+
+```bash
+./coverage.sh
+
+# or
+GIN_MODE=release go test -coverprofile=coverage.out
+go tool cover -func=coverage.out
+go tool cover -html=coverage.out -o coverage.html
+
+# to see the HTML report
+open coverage.html
+```
+
 ## How to create a new project
 
 ```bash
