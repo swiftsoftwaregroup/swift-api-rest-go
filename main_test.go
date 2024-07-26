@@ -138,3 +138,67 @@ func TestDeleteBook(t *testing.T) {
 	assert.Error(t, result.Error)
 	assert.Equal(t, gorm.ErrRecordNotFound, result.Error)
 }
+
+func TestGetBookNotFound(t *testing.T) {
+	db = setupTestDB()
+	r := setupRouter()
+
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/books/999", nil)
+	r.ServeHTTP(w, req)
+
+	assert.Equal(t, 404, w.Code)
+}
+
+func TestUpdateBookNotFound(t *testing.T) {
+	db = setupTestDB()
+	r := setupRouter()
+
+	updatedBook := models.Book{
+		Title:  "Updated Book",
+		Author: "Updated Author",
+	}
+	jsonValue, _ := json.Marshal(updatedBook)
+
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("PUT", "/books/999", bytes.NewBuffer(jsonValue))
+	r.ServeHTTP(w, req)
+
+	assert.Equal(t, 404, w.Code)
+}
+
+func TestDeleteBookNotFound(t *testing.T) {
+	db = setupTestDB()
+	r := setupRouter()
+
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("DELETE", "/books/999", nil)
+	r.ServeHTTP(w, req)
+
+	assert.Equal(t, 404, w.Code)
+}
+
+func TestCreateBookInvalidJSON(t *testing.T) {
+	db = setupTestDB()
+	r := setupRouter()
+
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("POST", "/books", bytes.NewBufferString("invalid json"))
+	r.ServeHTTP(w, req)
+
+	assert.Equal(t, 400, w.Code)
+}
+
+func TestUpdateBookInvalidJSON(t *testing.T) {
+	db = setupTestDB()
+	r := setupRouter()
+
+	// Add a test book
+	db.Create(&models.Book{Title: "Test Book", Author: "Test Author"})
+
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("PUT", "/books/1", bytes.NewBufferString("invalid json"))
+	r.ServeHTTP(w, req)
+
+	assert.Equal(t, 400, w.Code)
+}
