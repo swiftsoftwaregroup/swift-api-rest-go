@@ -1,4 +1,5 @@
 # swift-api-rest-go
+
 This project implements a simple API just to illustrate how one would go about implementing a REST API using [Gin](https://gin-gonic.com) and [Go](https://go.dev). 
 
 ## Setup
@@ -80,6 +81,22 @@ go tool cover -html=coverage.out -o coverage.html
 
 # to see the HTML report
 open coverage.html
+```
+
+## Run in Podman / Docker 
+
+> In order to do this you will need Podman. See [Setup Podman on macOS](./docs/setup-podman-macos.md) for details.
+
+Rebuild container image and start container:
+
+```bash
+./scripts/podman.sh
+```
+
+Delete container and image:
+
+```bash
+./scripts/podman-delete.sh
 ```
 
 ## How to create a new project
