@@ -1,6 +1,6 @@
 module swift-api-rest-go
 
-go 1.21.5
+go 1.21
 
 require (
 	github.com/gin-contrib/cors v1.7.2

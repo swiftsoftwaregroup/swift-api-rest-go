@@ -5,10 +5,10 @@ script_dir=$( cd `dirname ${BASH_SOURCE[0]}` >/dev/null 2>&1 ; pwd -P )
 
 echo "Go ..."
 
-goenv install 1.21.5 --skip-existing
+goenv install 1.21 --skip-existing
    
 # create .go-version
-goenv local 1.21.5
+goenv local 1.21
 
 goenv versions
 
